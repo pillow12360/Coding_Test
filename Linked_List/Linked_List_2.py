@@ -1,5 +1,3 @@
-#Node 구현
-
 class Node :
     def __init__(self, value=0, next = None):
         self.value = value
@@ -13,9 +11,6 @@ first.next = second
 second.next = third
 first.value = 6
 
-
-#insert back or append
-
 class LinkedList(object):
     def __init__(self):
         self.head = None
@@ -28,11 +23,32 @@ class LinkedList(object):
             while(current.next): # node의 마지막 까지 반복
                 current = current.next
             current.next = new_node # 마지막 노드가 오면 다음 노드의 주솟값 가리킴
+    def get(self, idx):
+        current = self.head
+        for _ in range(idx):
+            current = current.next
+        return current.value
 
-#구현은 항상 문제 , 사람 , 상황에 따라 항상 바뀔 수 밖에 없다.
+class LinkedList(object):
+    def __init__(self):
+        self.head = None
 
-ll = LinkedList()
+    def append(self, value):
+        pass
+    def get(self, idx):
+        current = self.head
+        for _ in range(idx):
+            currunt = current.next
+        return current.value
+# get 메소드는 빅오 O(n)
+
+
+ll=LinkedList()
 ll.append(1)
 ll.append(2)
 ll.append(3)
 ll.append(4)
+ll.get(0)
+ll.get(1)
+ll.get(2)
+ll.get(3)
