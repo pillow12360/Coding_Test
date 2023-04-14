@@ -19,24 +19,24 @@
 
 #             self.tail = new_node
 
-from collections import deque
+# from collections import deque
 
-q = deque()
+# q = deque()
 
-q.append(1)
-q.append(2)
-q.append(3)
-q.append(4)
-q.append(5)
-q.append(6)
+# q.append(1)
+# q.append(2)
+# q.append(3)
+# q.append(4)
+# q.append(5)
+# q.append(6)
 
-print(q)
+# print(q)
 
-q.pop()
-print(q)
+# q.pop()
+# print(q)
 
-q.popleft()
-print(q)
+# q.popleft()
+# print(q)
 
 
 # class Node():
@@ -61,56 +61,141 @@ print(q)
 #           new_node.prev = self.tail
 #           self.tail = new_node
 
+# 0414
+
+# class Node():
+#     def __init__(self,value):
+#         self.value = value
+#         self.next = None
+#         self.prev = None
+
+# class LinkedList():
+#     def __init__(self,value):
+#         self.head = None
+#         self.tail = None
+#     def append(self, value):
+#         new_node = Node()
+#         if self.head is None:
+#             self.head = new_node
+#             self.tail = new_node
+#         else:
+#             # self.tail.next = new_node
+#             # new_node.prev = self.tail
+#             # self.tail = new_node
+#             self.tail.next = new_node
+#             self.tail = self.tail.next
+
+#     def get():
+#         def __init__(self,idx):
+#             current = self.head
+#             for _ in range(idx):
+#                 current = current.next
+#             return current.value
+        
+#     def insert():
+#         def __init__ (self,idx,value):
+#             current = self.head
+#             for _ in range(idx):
+#                 currunt = current.next
+#             insert_node = Node()
+#             insert_node.value=value
+#             insert_node.next = current.next
+#             current.next = insert_node
+
+#     def remove(self,idx):
+#         current = self.head
+#         for _ in range(idx-1):
+#             current = current.next
+#             current.next = self.next
+
+#     def print(self):
+#         current = self.head
+#         while (current):
+#             print (current.value, end="")
+#             current = current.nexti
+#             if current:
+#                 print("->",end=' ')
+#         print()
+
+
+
+
+# ll = LinkedList()
+# ll.append(1)
+# ll.append(1)
+# ll.append(1)
+# ll.append(1)
+# ll.insert(idx=2, value=9)
+# ll.print()
+
+
 class Node():
-    def __init__(self,value):
+    def __init__(self, value):
         self.value = value
         self.next = None
         self.prev = None
 
 class LinkedList():
-    def __init__(self,value):
+    def __init__(self):
         self.head = None
         self.tail = None
-    def append(self, value):
-        new_node = Node()
+    
+    def append (self,value):
+        new_node = Node(value)
         if self.head is None:
             self.head = new_node
             self.tail = new_node
+            self.value = value
         else:
-            # self.tail.next = new_node
-            # new_node.prev = self.tail
-            # self.tail = new_node
             self.tail.next = new_node
-            self.tail = self.tail.next
+            new_node.prev = self.tail
+            self.tail = new_node
 
-    def get():
-        def __init__(self,idx):
-            current = self.head
-            for _ in range(idx):
-                current = current.next
-            return current.value
-        
-    def insert_at ():
-        def __init__ (self,idx,value):
-            current = self.head
-            for _ in range(idx):
-                currunt = current.next
-            insert_node = Node()
-            insert_node.value=value
-            insert_node.next = current.next
-            current.next = insert_node
+    def get(self, idx):
+        current = self.head
+        for _ in range(idx):
+            current = current.next
+        return current.value
 
-    def remove(self,idx):
+    def insert(self,idx,value):
         current = self.head
         for _ in range(idx-1):
             current = current.next
-            current.next = self.next
+        new_node = Node(value)
+        new_node.next = current.next
+        current.next = new_node
+        new_node.prev = current
+        
+    def remove(self, idx):
+        if idx == 0:
+            self.head = self.head.next # garbage collector가 알아서 처리해준다.
+        else:
+            current = self.head
+            for _ in range(idx-1):
+                current = current.next
+            current.next = current.next.next
+    
+    def print(self):
+        current = self.head
+        while(current):
+            print(current.value, end="")
+            current = current.next    
+            if current:
+                print("->", end="")
+        print()
 
 
-ll =LinkedList()
-ll.append(1)
-ll.append(1)
-ll.append(1)
-ll.append(1)
-ll.insert(idx=2, value=9)
+ll = LinkedList()
 
+ll.append(1)
+ll.append(10)
+ll.append(100)
+ll.append(1000)
+ll.append(10000)
+
+
+ll.print()
+
+ll.remove(5)
+
+ll.print()
