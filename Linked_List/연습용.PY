@@ -135,67 +135,96 @@ class Node():
         self.next = None
         self.prev = None
 
-class LinkedList():
-    def __init__(self):
-        self.head = None
-        self.tail = None
+# class LinkedList():
+#     def __init__(self):
+#         self.head = None
+#         self.tail = None
     
-    def append (self,value):
-        new_node = Node(value)
-        if self.head is None:
-            self.head = new_node
-            self.tail = new_node
-            self.value = value
-        else:
-            self.tail.next = new_node
-            new_node.prev = self.tail
-            self.tail = new_node
+#     def append (self,value):
+#         new_node = Node(value)
+#         if self.head is None:
+#             self.head = new_node
+#             self.tail = new_node
+#             self.value = value
+#         else:
+#             self.tail.next = new_node
+#             new_node.prev = self.tail
+#             self.tail = new_node
 
-    def get(self, idx):
-        current = self.head
-        for _ in range(idx):
-            current = current.next
-        return current.value
+#     def get(self, idx):
+#         current = self.head
+#         for _ in range(idx):
+#             current = current.next
+#         return current.value
 
-    def insert(self,idx,value):
-        current = self.head
-        for _ in range(idx-1):
-            current = current.next
-        new_node = Node(value)
-        new_node.next = current.next
-        current.next = new_node
-        new_node.prev = current
+#     def insert(self,idx,value):
+#         current = self.head
+#         for _ in range(idx-1):
+#             current = current.next
+#         new_node = Node(value)
+#         new_node.next = current.next
+#         current.next = new_node
+#         new_node.prev = current
         
-    def remove(self, idx):
-        if idx == 0:
-            self.head = self.head.next # garbage collector가 알아서 처리해준다.
-        else:
-            current = self.head
-            for _ in range(idx-1):
-                current = current.next
-            current.next = current.next.next
+#     def remove(self, idx):
+#         if idx == 0:
+#             self.head = self.head.next # garbage collector가 알아서 처리해준다.
+#         else:
+#             current = self.head
+#             for _ in range(idx-1):
+#                 current = current.next
+#             current.next = current.next.next
     
-    def print(self):
-        current = self.head
-        while(current):
-            print(current.value, end="")
-            current = current.next    
-            if current:
-                print("->", end="")
-        print()
+#     def print(self):
+#         current = self.head
+#         while(current):
+#             print(current.value, end="")
+#             current = current.next    
+#             if current:
+#                 print("->", end="")
+#         print()
 
 
-ll = LinkedList()
+# ll = LinkedList()
 
-ll.append(1)
-ll.append(10)
-ll.append(100)
-ll.append(1000)
-ll.append(10000)
+# ll.append(1)
+# ll.append(10)
+# ll.append(100)
+# ll.append(1000)
+# ll.append(10000)
 
 
-ll.print()
+# ll.print()
 
-ll.remove(5)
+# ll.remove(5)
 
-ll.print()
+# ll.print()
+
+
+class Node():
+    def __init__(self,val=0,next=None,prev=None):
+        self.val = val
+        self.next = next
+        self.prev = prev
+
+class BrowserHistory():
+    def __init__(self,homepage):
+        self.head = self.current = Node(val=homepage)
+
+    def visit(self,url):
+        self.current.next = Node(val=url,prev=self.current)
+        self.current = self.current.next
+        return None
+        
+    def back(self,steps):
+        while steps > 0 and self.current.prev != None:
+            self.current = self.current.prev
+            steps -= 1
+        return self.current.val
+    
+    def forward(self,steps):
+        while steps > 0 and self.current.next != None:
+            self.current = self.current.next
+            steps -= 1
+        return self.current.val
+
