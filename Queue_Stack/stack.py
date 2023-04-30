@@ -18,4 +18,6 @@ stack.pop()
 stack.pop()
 stack.pop()
 
-# LIFO
+# LIFO 방식 Leaste In First Out
+# 후입선출
+
