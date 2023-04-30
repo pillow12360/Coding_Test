@@ -129,11 +129,11 @@
 # ll.print()
 
 
-class Node():
-    def __init__(self, value):
-        self.value = value
-        self.next = None
-        self.prev = None
+# class Node():
+#     def __init__(self, value):
+#         self.value = value
+#         self.next = None
+#         self.prev = None
 
 # class LinkedList():
 #     def __init__(self):
@@ -201,30 +201,66 @@ class Node():
 # ll.print()
 
 
-class Node():
-    def __init__(self,val=0,next=None,prev=None):
-        self.val = val
+# class Node():
+#     def __init__(self,val=0,next=None,prev=None):
+#         self.val = val
+#         self.next = next
+#         self.prev = prev
+
+# class BrowserHistory():
+#     def __init__(self,homepage):
+#         self.head = self.current = Node(val=homepage)
+
+#     def visit(self,url):
+#         self.current.next = Node(val=url,prev=self.current)
+#         self.current = self.current.next
+#         return None
+        
+#     def back(self,steps):
+#         while steps > 0 and self.current.prev != None:
+#             self.current = self.current.prev
+#             steps -= 1
+#         return self.current.val
+    
+#     def forward(self,steps):
+#         while steps > 0 and self.current.next != None:
+#             self.current = self.current.next
+#             steps -= 1
+#         return self.current.val
+
+class Node(object):
+    def __init__(self,value=0,next=None,prev=None):
         self.next = next
         self.prev = prev
+        self.value = value
 
-class BrowserHistory():
-    def __init__(self,homepage):
-        self.head = self.current = Node(val=homepage)
-
-    def visit(self,url):
-        self.current.next = Node(val=url,prev=self.current)
-        self.current = self.current.next
-        return None
-        
-    def back(self,steps):
-        while steps > 0 and self.current.prev != None:
-            self.current = self.current.prev
-            steps -= 1
-        return self.current.val
+class LinkedList(object):
     
+    def __init__(self, url):
+        self.head = self.current = Node(value=url)
+
+    def visit (self,url):
+        self.current.next = Node(value=url, prev=self.current)
+        self.current = self.current.next
+
     def forward(self,steps):
         while steps > 0 and self.current.next != None:
             self.current = self.current.next
             steps -= 1
-        return self.current.val
+        return self.current.value
+
+    def print():
+        self.current = self.head
+        while self.current.next:
+            print(self.current.value)
+
+ll = LinkedList(abc.com)
+
+ll.visit("bac1.com")
+ll.visit("bac2.com")
+ll.visit("bac3.com")
+ll.visit("bac4.com")
+ll.visit("bac5.com")
+ll.visit("bac6.com")
+ll.print
 
