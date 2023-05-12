@@ -11,7 +11,8 @@ def Valid(s):
             return False
     return False
 # 직관적 접근방법과 단순화, 극한화
-# 활용할 자료구조의 활용
+# # 활용할 자료구조의 활용
+
 
 # for 문 if 
 # not (리스트 이름) 리스트가 끝나거나 
